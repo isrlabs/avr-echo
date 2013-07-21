@@ -19,34 +19,24 @@
 
 #include "serial.h"
 
-static void
-ok(void)
+
+/*
+ * echo reads input from the serial port and echoes it back.
+ */
+int
+main(void)
 {
 	unsigned char	ok[] = "ok\r\n";
-
-	PORTB |= (1 << 0);
-	serial_transmit(ok, 4);
-	PORTB &= (0 << 0) | (1 << 5);
-}
-
-static void
-echo(void)
-{
 	unsigned char	in;
 
+	PORTB |= (1 << 5);
+
+	serial_init(9600, 0);
+	serial_transmit(ok, 4);
 	while (1) {
 		in = serial_block_receive_byte();
 		serial_block_transmit_byte(in);
 	}
-}
 
-int
-main(void)
-{
-	serial_init(9600, 0);
-
-	PORTB |= (1 << 5);
-	ok();
-	echo();
 	return 0;
 }
