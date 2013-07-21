@@ -1,0 +1,4 @@
+echo is a demo program for the AVR mega8 family of microcontrollers (it
+was written on an Arduino Uno, which has an ATmega328P). When the mega328
+boots up, it prints an "ok" to the serial console. After that, it echoes
+any input back to the serial port.
