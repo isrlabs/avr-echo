@@ -35,7 +35,11 @@ main(void)
 	serial_transmit(ok, 4);
 	while (1) {
 		in = serial_block_receive_byte();
+		if (in == 0xa)
+			serial_block_transmit_byte(0xd);
 		serial_block_transmit_byte(in);
+		if (in == 0xd)
+			serial_block_transmit_byte(0xa);
 	}
 
 	return 0;
