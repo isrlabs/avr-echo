@@ -42,3 +42,5 @@ upload: $(TARGET).hex
 
 clean:
 	rm -f *.hex *.elf *.eeprom
+
+.PHONY: clean upload
